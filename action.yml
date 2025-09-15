@@ -22,7 +22,7 @@ branding:
     icon: cloud
 runs:
     using: node20
-    main: ./build/index.js
+    main: dist/index.js
 inputs:
     check-args:
         description: List of arguments to apply after `cargo clippy`, but before `--` like `--tests`.

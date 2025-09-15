@@ -24,7 +24,7 @@ on:
             - '.github/**'
             - '.eslintignore'
             - '.gitignore'
-            - 'build/**'
+            - 'dist/**'
             - '**.md'
             - 'LICENSE'
 

@@ -41,7 +41,7 @@ async function main() {
 
     let failed = false;
     for await (const file of glob.scan({ cwd: ROOT })) {
-        if (file.includes('node_modules') || file.includes('build')) {
+        if (file.includes('node_modules') || file.includes('dist')) {
             continue;
         }
 

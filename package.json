@@ -4,13 +4,13 @@
     "version": "1.4.0",
     "private": true,
     "type": "module",
-    "main": "build/main.js",
+    "main": "dist/index.js",
     "author": "step-security",
     "license": "Apache-2.0",
     "repository": "https://github.com/step-security/clippy-action",
     "bugs": "https://github.com/step-security/clippy-action/issues/new",
     "scripts": {
-        "build": "npm run fmt && npm run lint && ncc build src/main.ts -o build --minify",
+        "build": "npm run fmt && npm run lint && ncc build src/main.ts -o dist --minify",
         "lint": "bun scripts/eslint.ts",
         "test": "bun test",
         "fmt": "bun scripts/prettier.ts"
