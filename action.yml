@@ -1,0 +1,61 @@
+# 🐻‍❄️📦 clippy-action: GitHub action to run Clippy, an up-to-date and modern version of actions-rs/clippy
+# Copyright 2023-2024 Noel Towa <cutie@floofy.dev>
+# Copyright (c) 2025 StepSecurity
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Clippy Action
+description: '🐻‍❄️📦 GitHub action to run Clippy, an up-to-date and modern version of actions-rs/clippy'
+author: step-security
+branding:
+    color: gray-dark
+    icon: cloud
+runs:
+    using: node20
+    main: ./build/index.js
+inputs:
+    check-args:
+        description: List of arguments to apply after `cargo clippy`, but before `--` like `--tests`.
+        default: ''
+        required: false
+    warn:
+        description: List (seperated by ',') of warnings to set. (eq. to the -W/--warn flag in `cargo clippy`). Deprecated since 1.4, can be used with `check-args` instead.
+        default: ''
+        required: false
+    allow:
+        description: List (seperated by ',') of allowed lints to set. (eq. to the -A/--allow flag in `cargo clippy`). Deprecated since 1.4, can be used with `check-args` instead.
+        default: ''
+        required: false
+    deny:
+        description: List (seperated by ',') of denied lints to set. (eq. to the -D/--deny flag in `cargo clippy`). Deprecated since 1.4, can be used with `check-args` instead.
+        default: ''
+        required: false
+    forbid:
+        description: List (seperated by ',') of forbidden lints to set. (eq. to the -F/--forbid flag in `cargo clippy`). Deprecated since 1.4, can be used with `check-args` instead.
+        default: ''
+        required: false
+    all-features:
+        description: If the `--all-features` flag should be included. Deprecated since 1.4, can be used with `args` input
+        default: 'false'
+        required: false
+    args:
+        description: Extra arguments to append to the `cargo clippy` command.
+        default: ''
+        required: false
+    working-directory:
+        description: Valid, relative or absolute path to the working directory to execute `cargo clippy` from.
+        default: ''
+        required: false
+    token:
+        description: GitHub token for authenticating requests to GitHub
+        required: true
