@@ -67,5 +67,10 @@ jobs:
             - name: Format project
               run: npm run fmt
 
+            - name: Setup Rust toolchain
+              run: |
+                  rustup toolchain install 1.95.0 --profile minimal --component clippy
+                  rustup default 1.95.0
+
             - name: Run tests
               run: npm test
