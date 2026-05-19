@@ -21,7 +21,7 @@ branding:
     color: gray-dark
     icon: cloud
 runs:
-    using: node20
+    using: node24
     main: dist/index.js
 inputs:
     check-args:

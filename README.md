@@ -1,3 +1,5 @@
+[![StepSecurity Maintained Action](https://raw.githubusercontent.com/step-security/maintained-actions-assets/main/assets/maintained-action-banner.png)](https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions)
+
 # 🐻‍❄️📦 Clippy GitHub Action
 
 > _GitHub action to run Clippy, an up-to-date and modern version of [actions-rs/clippy](https://github.com/actions-rs/clippy)_
