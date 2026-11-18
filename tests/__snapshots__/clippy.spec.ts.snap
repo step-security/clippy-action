@@ -1,6 +1,7 @@
 // Bun Snapshot v1, https://bun.sh/docs/test/snapshots
 
 exports[`clippy :: error + warnings 1`] = `
+<<<<<<< c42b1e7d5e2651d85e76e3a5a8ecef8bd1cb88e5
 {
   "error": [
     [
@@ -57,10 +58,36 @@ exports[`clippy :: error + warnings 1`] = `
     ],
   ],
 }
+=======
+[
+  {
+    "endColumn": 14,
+    "endLine": 4,
+    "file": undefined,
+    "startColumn": 9,
+    "startLine": 4,
+    "title": "variable does not need to be mutable",
+  },
+]
+`;
+
+exports[`clippy :: error + warnings 2`] = `
+[
+  {
+    "endColumn": 24,
+    "endLine": 5,
+    "file": undefined,
+    "startColumn": 8,
+    "startLine": 5,
+    "title": "equal expressions as operands to \`==\`",
+  },
+]
+>>>>>>> c17b45bca5105b99d1ae6586380041ff3f0185c6
 `;
 
 exports[`clippy :: no warning or error messages 1`] = `
 {
+<<<<<<< c42b1e7d5e2651d85e76e3a5a8ecef8bd1cb88e5
   "error": [
     [
       {
@@ -115,5 +142,10 @@ exports[`clippy :: no warning or error messages 1`] = `
       },
     ],
   ],
+=======
+  "error": [],
+  "info": [],
+  "warning": [],
+>>>>>>> c17b45bca5105b99d1ae6586380041ff3f0185c6
 }
 `;
