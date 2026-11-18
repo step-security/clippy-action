@@ -27,6 +27,6 @@ export default noel(
         }
     },
     {
-        ignores: ['build/**']
+        ignores: ['build/**', 'dist/**', 'node_modules/**']
     }
 );
