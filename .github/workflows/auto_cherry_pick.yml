@@ -1,16 +1,28 @@
 name: Auto Cherry-Pick from Upstream
 
 on:
+  workflow_run:
+    workflows: [ "Release GitHub Actions" ]
+    types:
+      - completed
+
   workflow_dispatch:
     inputs:
       base_branch:
         description: "Base branch to create the PR against"
         required: true
         default: "main"
+      mode:
+        description: "Run mode: cherry-pick or verify"
+        required: false
+        default: "cherry-pick"
       node_version:
-        description: "Specify Node.js version (e.g., '18', '20', 'lts/*')"
+        description: "Node.js version to use"
         required: false
         default: "24"
+
+  pull_request:
+    types: [ opened, synchronize, labeled ]
 
 permissions:
   contents: write
@@ -20,9 +32,11 @@ permissions:
 
 jobs:
   cherry-pick:
+    if: (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || github.event_name == 'workflow_dispatch' || contains(fromJson(toJson(github.event.pull_request.labels)).*.name, 'review-required')
     uses: step-security/reusable-workflows/.github/workflows/auto_cherry_pick.yaml@v1
     with:
       original-owner: "auguwu"
       repo-name: "clippy-action"
-      base_branch: ${{ inputs.base_branch }}
-      node_version: "${{ inputs.node_version || '24' }}"
+      base_branch: ${{ inputs.base_branch || 'main' }}
+      mode: ${{ github.event_name == 'pull_request' && 'verify' || inputs.mode || 'cherry-pick' }}
+      node_version: ${{ inputs.node_version || '24' }}
