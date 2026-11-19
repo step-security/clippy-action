@@ -1,0 +1,3 @@
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+reason = "minimatch is a dev-only dependency (eslint tooling) and is not shipped in the action bundle"
