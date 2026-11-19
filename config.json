@@ -1,0 +1,17 @@
+{
+  "$comment": "Managed automatically when syncing with upstream. Do not edit by hand.",
+  "schema_version": 1,
+  "onboarding_type": "copied",
+  "action_type": "node",
+  "upstream": {
+    "repository": "auguwu/clippy-action",
+    "synced_tag": "1.5.0",
+    "synced_commit": "9817d076b82df0194935be9db6154c56ac07b317",
+    "archived": false
+  },
+  "build": {
+    "package_manager": "npm@11.19.1",
+    "node_version": "24",
+    "script": "build"
+  }
+}

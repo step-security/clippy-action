@@ -1,6 +1,6 @@
 /*
  * 🐻‍❄️📦 clippy-action: GitHub action to run Clippy, an up-to-date and modern version of actions-rs/clippy
- * Copyright 2023-2024 Noel Towa <cutie@floofy.dev>
+ * Copyright 2023-2026 Noel <cutie@floofy.dev>, et al.
  * Copyright (c) 2025 StepSecurity
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +17,9 @@
  */
 
 import { getClippyOutput, renderMessages, type Renderer } from '../src/clippy';
-import { beforeEach, afterAll, expect, test } from 'bun:test';
 import type { AnnotationProperties } from '@actions/core';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { beforeEach, expect, test } from 'bun:test';
+import { resolve } from 'node:path';
 import { which } from '@actions/io';
 
 const kRenderQueue: Record<
@@ -50,6 +49,10 @@ const flushRenderQueue = () => {
     }
 };
 
+beforeEach(() => {
+    flushRenderQueue();
+});
+
 test(
     'clippy :: error + warnings',
     async () => {
@@ -74,7 +77,9 @@ test(
         expect(kRenderQueue.warning.length).toBe(1);
         expect(kRenderQueue.error.length).toBe(1);
         expect(kRenderQueue.info.length).toBe(0);
-        expect(kRenderQueue).toMatchSnapshot();
+
+        expect(kRenderQueue.warning.flatMap((f) => f.map((f) => f.properties))).toMatchSnapshot();
+        expect(kRenderQueue.error.flatMap((f) => f.map((f) => f.properties))).toMatchSnapshot();
 
         const warning = kRenderQueue.warning[0];
         expect(warning.length).toBe(1);
@@ -110,6 +115,10 @@ test('clippy :: no warning or error messages', async () => {
 
     expect(exitCode).toBe(0);
     await renderMessages(pieces, kMockedRenderer);
+
+    expect(kRenderQueue.warning.length).toBe(0);
+    expect(kRenderQueue.error.length).toBe(0);
+    expect(kRenderQueue.info.length).toBe(0);
 
     expect(kRenderQueue).toMatchSnapshot();
 });
